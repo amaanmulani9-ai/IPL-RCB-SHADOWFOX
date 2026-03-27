@@ -1,11 +1,13 @@
 # IPL-RCB
 
-A React + Vite fan project themed around Royal Challengers Bengaluru. The app presents an RCB-inspired landing page with a trophy-led hero section, 2026 fixture highlights, squad visuals, official update cards, merchandise content, and supporting links in a single-page experience.
+A React + Vite fan project themed around Royal Challengers Bengaluru. The app presents an RCB-inspired single-page experience with a trophy-led hero, the "Ee Saala Cup Namdu" slogan, verified 2026 fixtures, squad visuals, official update cards, merchandise content, and supporting links.
 
 ## Highlights
 
-- RCB-themed hero section with the IPL trophy image and the "Ee Saala Cup Namde Again" message
+- RCB-themed hero section with the IPL trophy image and the "Ee Saala Cup Namdu" message
+- Animated front loading screen with bold intro typography
 - Verified 2026 fixture section with match timing and venue details
+- Match date cards that blend RCB colors with each opponent's team colors
 - Ticket and merchandise sections designed around the RCB visual identity
 - Squad cards and player imagery served from local assets in `public/players`
 - Official update and source-link sections for quick reference
@@ -78,6 +80,18 @@ npm run preview
 - Update styling, layout, and responsive behavior in `src/app.css`
 - Replace or add player and trophy images inside `public/players`
 - If you rename or move images, update the matching paths in `src/App.jsx`
+
+## Current UI Sections
+
+- Intro loading screen
+- Hero banner
+- Official 2026 fixtures
+- Ticket experience
+- Squad core
+- Official RCB updates
+- Merchandise
+- Build notes
+- Official links
 
 ## License
 

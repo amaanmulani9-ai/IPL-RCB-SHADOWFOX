@@ -741,7 +741,7 @@ function Hero({ now, liveFixture, nextFixture }) {
           <h1>
             Ee Saala Cup
             <br />
-            <span>Namde Again.</span>
+            <span>Namdu</span>
           </h1>
           <p className="hero-text">
             This app is now a full Royal Challengers Bengaluru build with verified 2026 fixtures,
@@ -763,7 +763,7 @@ function Hero({ now, liveFixture, nextFixture }) {
             </div>
             <div className="meta-card">
               <span className="meta-label">Season frame</span>
-              <strong>Ee Saala Cup Namde Again</strong>
+              <strong>Ee Saala Cup Namdu</strong>
             </div>
             <div className="meta-card">
               <span className="meta-label">Verified against</span>
