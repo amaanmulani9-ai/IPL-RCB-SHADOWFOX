@@ -345,7 +345,7 @@ code {
   z-index: 1;
   margin: 14px 0 0;
   font-family: "Bebas Neue", sans-serif;
-  font-size: clamp(3.1rem, 9vw, 7rem);
+  font-size: clamp(3.7rem, 10vw, 8.4rem);
   line-height: 0.9;
   letter-spacing: 0.06em;
 }
@@ -1912,7 +1912,7 @@ main {
   }
 
   .intro-title {
-    font-size: clamp(2.7rem, 12vw, 4.5rem);
+    font-size: clamp(3.1rem, 13vw, 5.4rem);
     letter-spacing: 0.04em;
   }
 
