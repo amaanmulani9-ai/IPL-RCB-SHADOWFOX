@@ -3,6 +3,60 @@ import stadiumMap from "./assets/chinnaswamy-venue-map.svg";
 
 const RCB_LOGO = "https://www.royalchallengers.com/themes/custom/rcbbase/images/rcb-logo-new.png";
 const HERO_TROPHY = "/players/IPL-Trophy.webp";
+const RCB_TEAM = "Royal Challengers Bengaluru";
+
+const TEAM_COLORS = {
+  [RCB_TEAM]: {
+    primary: "#d1122e",
+    secondary: "#15386f",
+    accent: "#f0d18e",
+  },
+  "Sunrisers Hyderabad": {
+    primary: "#f26522",
+    secondary: "#111111",
+    accent: "#ffb357",
+  },
+  "Chennai Super Kings": {
+    primary: "#fdb913",
+    secondary: "#1d4f91",
+    accent: "#ffe278",
+  },
+  "Rajasthan Royals": {
+    primary: "#ea1a85",
+    secondary: "#254aa5",
+    accent: "#ff97d1",
+  },
+  "Mumbai Indians": {
+    primary: "#005da0",
+    secondary: "#d1ab3e",
+    accent: "#7fc7ff",
+  },
+  "Lucknow Super Giants": {
+    primary: "#00a9e0",
+    secondary: "#f47c20",
+    accent: "#9fe7ff",
+  },
+  "Delhi Capitals": {
+    primary: "#004c93",
+    secondary: "#ef1b23",
+    accent: "#7ab5ff",
+  },
+  "Gujarat Titans": {
+    primary: "#1c2340",
+    secondary: "#c49a47",
+    accent: "#8ac6ff",
+  },
+  "Kolkata Knight Riders": {
+    primary: "#3d2256",
+    secondary: "#d4af37",
+    accent: "#b99cff",
+  },
+  "Punjab Kings": {
+    primary: "#dd1f2d",
+    secondary: "#b1b3b6",
+    accent: "#f5f5f5",
+  },
+};
 
 const FIXTURES = [
   {
@@ -554,6 +608,15 @@ function sameKolkataDay(left, right) {
   return leftKey === rightKey;
 }
 
+function hexToRgba(hex, alpha) {
+  const value = hex.replace("#", "");
+  const red = Number.parseInt(value.slice(0, 2), 16);
+  const green = Number.parseInt(value.slice(2, 4), 16);
+  const blue = Number.parseInt(value.slice(4, 6), 16);
+
+  return `rgba(${red}, ${green}, ${blue}, ${alpha})`;
+}
+
 function getFixtureStatus(iso, now) {
   const start = new Date(iso);
   const end = new Date(start.getTime() + 4 * 60 * 60 * 1000);
@@ -566,6 +629,27 @@ function getFixtureStatus(iso, now) {
 
 function buildMatchLabel(fixture) {
   return fixture.home ? `RCB vs ${fixture.opponent}` : `${fixture.opponent} vs RCB`;
+}
+
+function getFixtureCardStyle(fixture) {
+  const rcbColors = TEAM_COLORS[RCB_TEAM];
+  const opponentColors = TEAM_COLORS[fixture.opponent] ?? {
+    primary: "#485675",
+    secondary: "#1c2440",
+    accent: "#d7a542",
+  };
+  const firstTeam = fixture.home ? rcbColors : opponentColors;
+  const secondTeam = fixture.home ? opponentColors : rcbColors;
+
+  return {
+    "--fixture-primary": hexToRgba(firstTeam.primary, 0.84),
+    "--fixture-secondary": hexToRgba(secondTeam.primary, 0.8),
+    "--fixture-soft-primary": hexToRgba(firstTeam.secondary, 0.42),
+    "--fixture-soft-secondary": hexToRgba(secondTeam.secondary, 0.38),
+    "--fixture-border": hexToRgba(secondTeam.accent, 0.28),
+    "--fixture-highlight": hexToRgba(firstTeam.accent, 0.44),
+    "--fixture-ribbon": `linear-gradient(90deg, ${firstTeam.primary}, ${firstTeam.secondary}, ${secondTeam.primary}, ${secondTeam.secondary})`,
+  };
 }
 
 function useIstClock() {
@@ -794,7 +878,10 @@ function Fixtures({ now }) {
               className={`fixture-card status-${status}`}
               key={fixture.match}
               data-reveal
-              style={{ "--reveal-order": fixture.match % 6 }}
+              style={{
+                "--reveal-order": fixture.match % 6,
+                ...getFixtureCardStyle(fixture),
+              }}
             >
               <div className="fixture-top">
                 <span className="fixture-match">Match {fixture.match}</span>
